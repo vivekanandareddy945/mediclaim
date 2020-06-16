@@ -66,11 +66,17 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+             <artifactId>flyway-core</artifactId>
+             <version>6.4.4</version>
+        </dependency>
+
 	</dependencies>
 <distributionManagement>
 		<snapshotRepository>
 			<id>nexus</id>
-			<url>http://13.235.9.73:8081/nexus/content/repositories/snapshots</url>
+			<url>http://13.234.226.148:8081/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<build>
@@ -98,6 +104,20 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+                <groupId>org.flywaydb</groupId>
+                    <artifactId>flyway-maven-plugin</artifactId>
+                    <version>6.4.4</version>
+                    <configuration>
+                    <baselineOnMigrate>true</baselineOnMigrate>
+                     <url>jdbc:mysql://13.234.226.148:3306</url>
+                     <user>flyuser</user>
+                      <password>H@ckath0n</password>
+                          <schemas>
+                          <schema>testdb</schema>
+                    </schemas>
+                  </configuration>   
+            </plugin>
 
 		</plugins>
 	</build>
